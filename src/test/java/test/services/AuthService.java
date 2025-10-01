@@ -2,23 +2,26 @@ package test.services;
 
 import test.models.login.LoginRequest;
 import test.models.login.LoginResponse;
-import test.utils.ConfigReader;
-import test.utils.TestDataBuilder;
+import test.BaseTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static test.BaseTest.config;
 import static test.api.ApiLoginClient.login;
 
 public class AuthService {
-    
+
     public static LoginResponse loginWithDefaultUser() {
-        LoginRequest loginRequest = TestDataBuilder.getDefaultLoginRequest();
+        LoginRequest loginRequest = new LoginRequest(
+                config.username(),
+                config.password()
+        );
         return login(loginRequest);
     }
-    
+
     public static void verifyLoginResponse(LoginResponse loginResponse) {
         assertNotNull(loginResponse.getToken(), "Token should not be null");
-        assertEquals(ConfigReader.getUsername(), loginResponse.getUsername(), 
-                    "Username should match");
+        assertEquals(config.username(), loginResponse.getUsername(),
+                "Username should match");
     }
 }
