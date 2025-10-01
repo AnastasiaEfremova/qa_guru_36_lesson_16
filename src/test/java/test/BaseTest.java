@@ -21,14 +21,6 @@ public class BaseTest {
 
     @BeforeAll
     static void setup() {
-        System.out.println("=== DEBUG CONFIG VALUES ===");
-        System.out.println("username: " + config.username());
-        System.out.println("password: " + (config.password() != null ? "***" : "null"));
-        System.out.println("remoteUrl: " + config.remoteUrl());
-        System.out.println("browser: " + config.browser());
-        System.out.println("browserVersion: " + config.browserVersion());
-        System.out.println("browserSize: " + config.browserSize());
-        System.out.println("=== END DEBUG ===");
 
         validateConfig();
 
