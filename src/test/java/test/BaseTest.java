@@ -36,9 +36,9 @@ public class BaseTest {
         RestAssured.baseURI = "https://demoqa.com";
 
         Configuration.pageLoadStrategy = "eager";
-        Configuration.browser = config.browser();
-        Configuration.browserVersion = config.browserVersion();
-        Configuration.browserSize = config.browserSize();
+        Configuration.browser = "chrome";
+        Configuration.browserVersion = "127.0";
+        Configuration.browserSize = "1920x1080";
 
         if (config.remoteUrl() != null && !config.remoteUrl().isEmpty()) {
             Configuration.remote = config.remoteUrl();
