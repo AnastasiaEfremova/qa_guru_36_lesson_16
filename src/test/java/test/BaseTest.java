@@ -32,16 +32,15 @@ public class BaseTest {
         Configuration.browserVersion = "127.0";
         Configuration.browserSize = "1920x1080";
 
-        if (config.remoteUrl() != null && !config.remoteUrl().isEmpty()) {
-            Configuration.remote = config.remoteUrl();
+        Configuration.remote = config.remoteUrl();
 
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                    "enableVNC", true,
-                    "enableVideo", true
-            ));
-            Configuration.browserCapabilities = capabilities;
-        }
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+        Configuration.browserCapabilities = capabilities;
+
     }
 
     private static void validateConfig() {
@@ -63,9 +62,6 @@ public class BaseTest {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
-
-        if (config.remoteUrl() != null && !config.remoteUrl().isEmpty()) {
-            Attach.addVideo();
-        }
+        Attach.addVideo();
     }
 }
